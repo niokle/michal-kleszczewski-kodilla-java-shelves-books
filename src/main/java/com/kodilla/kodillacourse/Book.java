@@ -33,4 +33,15 @@ public class Book {
             return shelf.getShelfName();
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        Book b = (Book) o;
+        return this.getAuthor().equals(((Book) o).getAuthor()) && this.getTitle().equals(((Book) o).getTitle());
+    }
+
+    @Override
+    public int hashCode() {
+        return this.getAuthor().length();
+    }
 }

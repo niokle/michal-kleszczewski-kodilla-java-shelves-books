@@ -17,9 +17,7 @@ public class Shelf {
     public void addBook(Book book) {
         if ( remainingShelfSize > 0 ) {
             books.add(book);
-
-            book.setShelf(new Shelf(shelfName, shelfSize));
-
+            book.setShelf(this);
             remainingShelfSize -= 1;
             System.out.println("Książka " + book.getAuthor() + "/" + book.getTitle() + " została dodana do półki " + shelfName + ".");
         } else {
@@ -27,21 +25,19 @@ public class Shelf {
         }
     }
 
-    public void removeBook(Book book) {
+    public boolean removeBook(Book book) {
         int orginalSizeShelf = books.size();
         for (Book b : books) {
-            if ( book.getAuthor() == b.getAuthor() && book.getTitle() == b.getTitle()) {
+            if ( book.equals(b) ) {
                 books.remove(book);
                 book.setShelf(null);
                 remainingShelfSize -= 1;
-                break;
+                System.out.println("Książka " + book.getAuthor() + "/" + book.getTitle() + " została usunięta z półki " + shelfName + ".");
+                return true;
             }
         }
-        if ( orginalSizeShelf > books.size() ) {
-            System.out.println("Książka " + book.getAuthor() + "/" + book.getTitle() + " została usunięta z półki " + shelfName + ".");
-        } else {
-            System.out.println("Nie znaleziono książki " + book.getAuthor() + "/" + book.getTitle() + " na półce " + shelfName + "." );
-        }
+        System.out.println("Nie znaleziono książki " + book.getAuthor() + "/" + book.getTitle() + " na półce " + shelfName + "." );
+        return false;
     }
 
     public int getRemainingShelfSize() {

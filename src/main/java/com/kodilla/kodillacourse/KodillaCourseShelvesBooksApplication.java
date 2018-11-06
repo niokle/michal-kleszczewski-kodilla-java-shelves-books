@@ -49,5 +49,7 @@ public class KodillaCourseShelvesBooksApplication {
 
         s1.getBooksList();
         s2.getBooksList();
+
+        System.out.println(s2.removeBook(b5));
     }
 }
