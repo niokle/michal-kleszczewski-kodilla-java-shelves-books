@@ -42,6 +42,6 @@ public class Book {
 
     @Override
     public int hashCode() {
-        return this.getAuthor().length();
+        return author.hashCode();
     }
 }
